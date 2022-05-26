@@ -1,0 +1,127 @@
+//#include <GLUT/glut.h>
+//#include <stdlib.h>
+//void display();
+//void reshape(int,int);
+//void init()
+//{
+//
+//    glClearColor(0.0,0.0,0.0,1.0);
+//}
+//int main(int argc, char**argv)
+//{
+//    glutInit(&argc,argv);
+//    glutInitDisplayMode(GLUT_RGB);
+//
+////    glutInitWindowPosition(200,100);
+//    glutInitWindowSize(600, 600);
+//
+//    glutCreateWindow("Window 1");
+//    glutDisplayFunc(display);
+//    glutReshapeFunc(reshape);
+//    init();
+//    glutMainLoop();
+//
+//
+//}
+//
+//void display()
+//{
+//    glClear(GL_COLOR_BUFFER_BIT);
+//    glLoadIdentity(); //reset any matrix transformation
+//
+//
+//
+//    glColor3f( 0.3 ,0.4, 0.5);
+//    glBegin(GL_QUADS);
+//       glVertex3f(200,200,0);
+//       glVertex3f(600,200,00);
+//       glVertex3f(600,0,0);
+//       glVertex3f(200,00,00);
+//       //glVertex3f(0.55,0.75,0);
+//       glEnd();
+//
+//
+//    glFlush();
+//
+//}
+//void reshape(int w, int h)
+//{
+//    glViewport(0, 0, (GLsizei)w,(GLsizei)h);
+//
+//    glMatrixMode(GL_PROJECTION);
+//    glLoadIdentity();
+//    gluOrtho2D(-10, 10,-10,10);
+//    glMatrixMode(GL_MODELVIEW);
+//}
+//
+//
+//
+
+
+
+
+
+#include <GLUT/glut.h>
+#include <stdio.h>
+#include <math.h>
+void init(void)
+{ //glClearColor(R,G,B,A);
+  glClearColor(0.0,0.0,0.0,0.0);
+    glOrtho(-50,50,-50,50,-50,50);//GLfloat red,green,blue,alpha initial value 0 alpha values used by glclear to clear the color buffers
+ 
+  //gluOrtho2D(0.0,300.0,0.0,300.0); // Orthographic representation; multiply the current matrix by an orthographic matrix 2D= left right,bottom,top equivalent near=-1,far=1
+}
+void circle(GLfloat rx,GLfloat ry,GLfloat x,GLfloat y)//radius_x,radius_y,certre_position_x,centre_position_y
+{
+    int i=0;
+    float angle;
+    GLfloat PI = 3.1416;
+    glBegin(GL_POLYGON);
+    glVertex2f(x,y);
+    for(i=0;i<361;i++)
+    {
+        angle = i * (PI/180); //conversion from degree to radian
+        glVertex2f(x+(cos(angle)*rx),y+(sin(angle)*ry));
+    }
+    glEnd();
+}
+
+
+void Draw()
+{
+    
+   glClear(GL_COLOR_BUFFER_BIT);
+
+    glColor3f( 0 ,128, 0);
+    glBegin(GL_QUADS);
+    glVertex3f(5,-20,0);
+    glVertex3f(40,-20,0.0);
+    glVertex3f(40,-40,0);
+    glVertex3f(5,-40,0.0);
+    
+       //glVertex3f(0.55,0.75,0);
+    glEnd();
+    glColor3f( 255 ,0, 0);
+    circle(5,5,22,-30);
+    
+    
+   glFlush();
+   //glutSwapBuffers();
+
+}
+
+
+
+int main(int argc,char **argv){
+
+
+    glutInit(&argc,argv);
+    glutInitDisplayMode ( GLUT_RGB | GLUT_SINGLE );
+    glutInitWindowPosition(200,100);
+    glutInitWindowSize(600,600);
+    glutCreateWindow("Graphics");
+    init();
+    glutDisplayFunc(Draw);
+    glutMainLoop();
+    return 0;
+}
