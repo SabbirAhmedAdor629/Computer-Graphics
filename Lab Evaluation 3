@@ -1,0 +1,191 @@
+#include <windows.h>
+#include <GL/glut.h>
+#include <stdio.h>
+#include <GL/gl.h>
+
+void init(void)
+{ //glClearColor(R,G,B,A);
+  glClearColor(0.0,0.0,0.0,0.0); //GLfloat red,green,blue,alpha initial value 0 alpha values used by glclear to clear the color buffers
+  glOrtho(-10,10,-10,10,-10,10);
+  //gluOrtho2D(0.0,300.0,0.0,300.0); // Orthographic representation; multiply the current matrix by an orthographic matrix 2D= left right,bottom,top equivalent near=-1,far=1
+}
+
+
+void Draw()
+{
+   glClear(GL_COLOR_BUFFER_BIT);
+
+
+   //Quad A
+   glColor3f( 1 ,1, 1);
+   glBegin(GL_QUADS);
+   glVertex3f(2.0,2.0,0.0);
+   glVertex3f(4.0,2.0,0.0);
+   glVertex3f(4.0,-2.0,0.0);
+   glVertex3f(2.0,-2.0,0.0);
+   //glVertex3f(0.55,0.75,0);
+   glEnd();
+
+   //TR 3
+   glColor3f(1 ,1, 1);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(4.0,2.0,0);
+   glVertex3f(6.0,0.0,0.0);
+   glVertex3f(4.0,-2.0,0);
+   glEnd();
+
+   //TR 1
+   glColor3f( 1 ,1, 1);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(0.0,0.0,0);
+   glVertex3f(2.0,2.0,0);
+   glVertex3f(2.0,-2.0,0.0);
+
+   //TR 2
+   glColor3f( 1 ,1, 1);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(2.0,2.0,0);
+   glVertex3f(3,4.0,0);
+   glVertex3f(4.0,2.0,0);
+
+   //TR 4
+    glColor3f( 1 ,1, 1);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(2.0,-2.0,0);
+   glVertex3f(4.0,-2.0,0);
+   glVertex3f(3.0,-4.0,0);
+
+
+   //Green Triangle
+
+
+   //TR 5
+    glColor3f( 0.5 ,0.75, 0.4);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(0.0,0.0,0);
+   glVertex3f(2.0,2.0,0);
+   glVertex3f(-2.0,2.0,0.0);
+
+    //TR 6
+   glColor3f( 0.5 ,0.75, 0.4);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(2.0,2.0,0);
+   glVertex3f(3,4.0,0);
+   glVertex3f(2.0,6.0,0);
+
+ //TR 7
+    glColor3f( 0.5 ,0.75, 0.4);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(0.0,8.0,0);
+   glVertex3f(2.0,6.0,0);
+   glVertex3f(-2.0,6.0,0.0);
+
+   //TR 8
+    glColor3f( 0.5 ,0.75, 0.4);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(-2.0,6.0,0.0);
+   glVertex3f(-4.0,4.0,0.0);
+   glVertex3f(-2.0,2.0,0.0);
+
+
+   // Quad B
+
+
+
+
+
+   //RED
+
+      //TR 9
+    glColor3f( 1 ,0, 0);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(0.0,0.0,0);
+   glVertex3f(-2.0,-2.0,0);
+   glVertex3f(-2.0,2.0,0.0);
+
+
+   //TR 10
+    glColor3f(1 ,0, 0);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(-6.0,2.0,0.0);
+   glVertex3f(-4.0,4.0,0.0);
+   glVertex3f(-2.0,2.0,0.0);
+
+   //TR 11
+    glColor3f(1 ,0, 0);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(-6.0,2.0,0.0);
+   glVertex3f(-8.0,0.0,0.0);
+   glVertex3f(-6.0,-2.0,0.0);
+
+
+   //TR 12
+    glColor3f(1 ,0, 0);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(-2.0,-2.0,0.0);
+   glVertex3f(-4.0,-4.0,0.0);
+   glVertex3f(-6.0,-2.0,0.0);
+
+
+
+   //Quad C
+
+
+
+
+   //BLUE
+    //TR 13
+    glColor3f( 0 ,0, 1);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(0.0,0.0,0);
+   glVertex3f(-2.0,-2.0,0);
+   glVertex3f(2.0,-2.0,0.0);
+
+   //TR 14
+    glColor3f(0 ,0, 1);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(-2.0,-2.0,0.0);
+   glVertex3f(-4.0,-4.0,0.0);
+   glVertex3f(-2.0,-6.0,0.0);
+
+   //TR 15
+    glColor3f( 0 ,0, 1);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(2.0,-2.0,0);
+   glVertex3f(2.0,-6.0,0);
+   glVertex3f(3.0,-4.0,0);
+
+
+
+
+   glEnd();
+
+
+
+
+
+
+
+//glVertex3f(2.0,0.0,0.0);
+   //glVertex3f(0.55,0.75,0);
+
+
+
+   glFlush();
+   //glutSwapBuffers();
+
+}
+
+int main(int argc,char **argv){
+
+
+    glutInit(&argc,argv);
+    glutInitDisplayMode ( GLUT_RGB | GLUT_SINGLE );
+    glutInitWindowPosition(200,200);
+    glutInitWindowSize(500,500);
+    glutCreateWindow("Graphics");
+    init();
+    glutDisplayFunc(Draw);
+    glutMainLoop();
+    return 0;
+}
