@@ -11,6 +11,10 @@ void init(void)
   // Orthographic representation; multiply the current matrix by an orthographic matrix 2D= left right,bottom,top equivalent near=-1,far=1
 }
 
+void timer(int);
+float x_position=0.0;
+float y_position=0.0;
+
 // Circle Function
 void circle(GLfloat rx,GLfloat ry,GLfloat x,GLfloat y)//radius_x,radius_y,certre_position_x,centre_position_y
 {
@@ -27,6 +31,7 @@ void circle(GLfloat rx,GLfloat ry,GLfloat x,GLfloat y)//radius_x,radius_y,certre
     }
     glEnd();
 }
+
 
 void Draw()
 {
@@ -59,13 +64,25 @@ void Draw()
    glEnd();
 
    // Circle
-    circle(2,2,6,-3);
+    circle(2,2,6,y_position+-3);
 
 
 
    glFlush();
    //glutSwapBuffers();
 
+}
+
+// Moving Function
+void timer(int)
+{
+    glutPostRedisplay();
+    glutTimerFunc(100, timer, 0);
+
+    if (y_position>=-4) {
+        y_position -=1;
+
+    }
 }
 
 
@@ -82,6 +99,7 @@ int main(int argc,char **argv){
     glutInitWindowSize(500,500);
     glutCreateWindow("Graphics");
     init();
+    glutTimerFunc(0, timer,0);
     glutDisplayFunc(Draw);
     glutMainLoop();
     return 0;
