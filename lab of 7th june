@@ -1,0 +1,182 @@
+#include <windows.h> 
+#include <GL/glut.h> 
+#include <stdlib.h> 
+#include <math.h> 
+ 
+float p=-145.0; 
+void init() 
+{ 
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f); 
+    glOrtho(-150,100,-150,100,-150,100); 
+} 
+void circle(GLfloat rx,GLfloat ry,GLfloat x,GLfloat y)//radius_x,radius_y,certre_position_x,centre_position_y 
+{ 
+    int i=0; 
+    float angle; 
+    GLfloat PI = 3.1416; 
+    glBegin(GL_POLYGON); 
+    glVertex2f(x,y); 
+    for(i=0;i<361;i++) 
+    { 
+        angle = i * (PI/180); //conversion from degree to radian 
+        glVertex2f(x+(cos(angle)*rx),y+(sin(angle)*ry)); 
+    } 
+    glEnd(); 
+} 
+ 
+ 
+void myDisplay() 
+{ 
+//circle 
+    glClear(GL_COLOR_BUFFER_BIT); 
+ 
+     if(p<=-100)   //moving limit with the display measurement 
+       p=p+0.002; //changing the object position for redisplaying 
+       else 
+       p=-145; 
+ 
+    glColor3f(0.0,0.5,0.0);//Green 
+        glBegin(GL_POLYGON); 
+        glVertex3d(-150,0,0); 
+        glVertex3d(-150.0,75,0); 
+        glVertex3d(150.0, 75, 0); 
+        glVertex3d(150,-65,0); 
+ 
+ glEnd(); 
+ 
+ 
+ 
+ 
+ 
+//wateer 
+glColor3f( 0, 0.56, 0.7); 
+ circle(240,55,-120,-55); 
+ 
+ glColor3f(0.0,0.5,0.0); 
+ circle(260,55,-145,-95); 
+ //stand 
+ 
+ //ship 
+ glColor3f(0.8,0.5,1.0); 
+ glBegin(GL_POLYGON); 
+ glVertex3d(p,-13,0); 
+ glVertex3d(p-2,-8,0); 
+ glVertex3d(p+15,-8,0); 
+ glVertex3d(p+13,-13,0); 
+ glEnd(); 
+ glColor3f(1.0,0.5,0); 
+ glBegin(GL_POLYGON); 
+ glVertex3d(p+2,-8,0); 
+ glVertex3d(p+2,-6,0); 
+ glVertex3d(p+11.5,-6,0); 
+ glVertex3d(p+11.5,-8,0); 
+ glEnd(); 
+  glColor3f(1.0,0.2,1.0); 
+  glBegin(GL_POLYGON); 
+ glVertex3d(p+4,-6,0); 
+ glVertex3d(p+4,-3,0); 
+ glVertex3d(p+9.5,-6,0); 
+ glVertex3d(p+9.5,-3,0); 
+ glEnd(); 
+ 
+//tree1 
+  glColor3f(0,0.2,1.0); 
+  glBegin(GL_POLYGON); 
+ glVertex3d(-145,20,0); 
+ glVertex3d(-143,57,0); 
+ glVertex3d(-141,20,0); 
+ glVertex3d(-143,27,0); 
+ glEnd(); 
+ //cap  of tree 
+ 
+   glColor3f(0,0.2,1.0); 
+  glBegin(GL_POLYGON); 
+ glVertex3d(-150,48,0); 
+ glVertex3d(-143,55,0); 
+ glVertex3d(-134,48,0); 
+ 
+ glEnd(); 
+ 
+ 
+//tree2 
+  glColor3f(0,0.2,1.0); 
+  glBegin(GL_POLYGON); 
+ glVertex3d(-115,20,0); 
+ glVertex3d(-113,57,0); 
+ glVertex3d(-111,20,0); 
+ glVertex3d(-113,27,0); 
+ glEnd(); 
+ //tree3 
+  glColor3f(0,0.2,1.0); 
+  glBegin(GL_POLYGON); 
+ glVertex3d(-85,20,0); 
+ glVertex3d(-83,57,0); 
+ glVertex3d(-81,20,0); 
+ glVertex3d(-83,27,0); 
+ glEnd(); 
+ //tree4 
+  glColor3f(0,0.2,1.0); 
+  glBegin(GL_POLYGON); 
+ glVertex3d(-55,20,0); 
+ glVertex3d(-53,57,0); 
+ glVertex3d(-51,20,0); 
+ glVertex3d(-53,27,0); 
+ glEnd(); 
+ 
+  //tree5 
+  glColor3f(0,0.2,1.0); 
+  glBegin(GL_POLYGON); 
+ glVertex3d(-25,20,0); 
+ glVertex3d(-23,57,0); 
+ glVertex3d(-21,20,0); 
+ glVertex3d(-23,27,0); 
+ glEnd(); 
+ 
+   //tree6 
+  glColor3f(0,0.2,1.0); 
+  glBegin(GL_POLYGON); 
+ glVertex3d(5,20,0); 
+ glVertex3d(7,57,0); 
+ glVertex3d(9,20,0); 
+ glVertex3d(-9,27,0); 
+ glEnd(); 
+ 
+    //tree7 
+  glColor3f(0,0.2,1.0); 
+  glBegin(GL_POLYGON); 
+ glVertex3d(35,20,0); 
+ glVertex3d(37,57,0); 
+ glVertex3d(39,20,0); 
+ glVertex3d(39,27,0); 
+ glEnd(); 
+ 
+     //tree8 
+  glColor3f(0,0.2,1.0); 
+  glBegin(GL_POLYGON); 
+ glVertex3d(65,20,0); 
+ glVertex3d(67,57,0); 
+ glVertex3d(69,20,0); 
+ glVertex3d(69,27,0); 
+ glEnd(); 
+//base 
+ 
+ 
+//circle 
+//glColor3f( 1, 0, 0); 
+//circle(2,2,20,-10); 
+glutPostRedisplay(); 
+    glFlush(); 
+} 
+ 
+ 
+int main() 
+{ 
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB); 
+    glutInitWindowSize(600, 600); 
+    glutInitWindowPosition(200, 200); 
+    glutCreateWindow("Demo Application"); 
+    init(); 
+    glutDisplayFunc(myDisplay); 
+    glutMainLoop(); 
+    return 0; 
+}
