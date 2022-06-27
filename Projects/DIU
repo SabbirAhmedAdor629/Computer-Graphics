@@ -1,0 +1,105 @@
+#include <windows.h>
+#include <GL/glut.h>
+#include <stdio.h>
+#include <GL/gl.h>
+#include <math.h>
+
+void init(void)
+{ //glClearColor(R,G,B,A);
+  glClearColor(0.45, 0.83, 0.83,0.0); //GLfloat red,green,blue,alpha initial value 0 alpha values used by glclear to clear the color buffers
+  glOrtho(-100,100,-100,100,-100,100);
+  //gluOrtho2D(0.0,300.0,0.0,300.0); // Orthographic representation; multiply the current matrix by an orthographic matrix 2D= left right,bottom,top equivalent near=-1,far=1
+}
+
+// Circle Function
+void circle(GLfloat rx,GLfloat ry,GLfloat x,GLfloat y)//radius_x,radius_y,certre_position_x,centre_position_y
+{
+    int i=0;
+    float angle;
+    GLfloat PI = 3.1416;
+    glBegin(GL_POLYGON);
+    glColor3f(1.0f, 1.0f, 1.0f);
+    glVertex2f(x,y);
+    for(i=0;i<361;i++)
+    {
+        angle = i * (PI/180);
+        glVertex2f(x+(cos(angle)*rx),y+(sin(angle)*ry));
+    }
+    glEnd();
+}
+
+void Draw()
+{
+   glClear(GL_COLOR_BUFFER_BIT);
+
+
+//Field
+
+   glColor3f(0.0f, 1.0f, 0.0f);
+   glBegin(GL_QUADS);
+   glVertex3f(-100.0, -100.0, 0.0);
+   glVertex3f(-65.0, -40.0, 0.0);
+   glVertex3f(100.0, -40.0, 0.0);
+   glVertex3f(100.0, -100.0, 0.0);
+   glEnd();
+
+
+   glColor3f(1.0, 1.0, 1.0);
+
+   glBegin(GL_LINES);
+   glVertex3f(-90.0, -95.0, 0.0);
+   glVertex3f(-63.0, -45.0, 0.0);
+
+   glVertex3f(-63.0, -45.0, 0.0);
+   glVertex3f(93.0, -45.0, 0.0);
+
+   glVertex3f(93.0, -45.0, 0.0);
+   glVertex3f(85.0, -95.0, 0.0);
+
+   glVertex3f(-90.0, -94.5, 0.0);
+   glVertex3f(86.0, -95.0, 0.0);
+
+   glVertex3f(10.0, -45.0, 0.0);
+   glVertex3f(-5.0, -95.0, 0.0);
+
+   glVertex3f(93.0, -25.0, 0.0);
+   glVertex3f(85.0, -95.0, 0.0);
+
+   glEnd();
+
+
+    // Circle
+    circle(15,15,4.5,-67);
+
+
+
+
+   glColor3f( 1.0 ,0.75, 1.0);
+   glBegin(GL_TRIANGLES);
+   glVertex3f(-6.0,2.0,0);
+   glVertex3f(-3.0,-2.0,0.0);
+   glVertex3f(-6.0,-2.0,0);
+   glEnd();
+
+
+
+   glColor3f(1.0f, 0.0f, 0.0f);
+   glRectf(-2.0,-5.0f,0.0f, 0.0f);
+
+   glFlush();
+
+}
+
+int main(int argc,char **argv){
+
+
+    glutInit(&argc,argv);
+    glutInitDisplayMode ( GLUT_RGB | GLUT_SINGLE );
+    glutInitWindowPosition(200,200);
+    glutInitWindowSize(500,500);
+    glutCreateWindow("Graphics");
+    init();
+    glutDisplayFunc(Draw);
+    glutMainLoop();
+    return 0;
+}
